@@ -1,5 +1,5 @@
 <odoo>
-    <menuitem name="Safego" id="menu_root2">
+    <menuitem name="Safego" id="menu_root2" web_icon="carpooling,static/description/icon.png">
         <menuitem name="Trips" id="car_pooling">
             <menuitem name="Show Trips" id="car_pooling_show" action="car_pooling_action"/>
             <menuitem name="Trip Tags" id="trip_tag_show" action="trip_tag_action"/>
