@@ -18,6 +18,7 @@
             <t t-if="rides" t-call="portal.portal_table">
                 <tr class="active">
                     <th class="text-center">Select</th>
+                    <th class="text-center">ID</th>
                     <th class="text-center">Driver(Car Owner)</th>
                     <th class="text-center">Available Seats</th>
                     <th class="text-center">Date of Travel</th>
@@ -29,7 +30,7 @@
                 <tr t-foreach="rides" t-as="rides_dict">
                     <td>
                         <div class="line">
-                            <a class="btn btn-primary" href="/patient-thank-you">Book</a>
+                            <a class="btn btn-primary" href="/patient-thank-you">Book &amp; Pay</a>
                         </div>
                     </td>
                     <t t-set="keys" t-value="rides_dict.keys()"/>
@@ -61,126 +62,128 @@
         <field name="parent_id" ref="website.main_menu"/>
         <field name="sequence" type="int">2</field>
     </record>
+   
     <template id="website_helpdesk_form_ticket_submit_form_new" name="Book a ride">
-        <t t-call="website.layout">
-            <div id="wrap" class="oe_structure oe_empty">
-                <div class="container">
-                    <h2 class="text-muted">Book A Ride</h2>
-                    <span class="hidden" data-for="helpdesk_ticket_form_new"/>
-                    <div id="helpdesk_section">
-                        <section id="forms" class="s_website_form" data-vcss="001" data-snippet="s_website_form">
-                            <form action="/my_controller/route" method="post" enctype="multipart/form-data"
-                                  class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
-                                <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                <div class="s_website_form_rows row s_col_no_bgcolor">
-                                    <div class="form-group col-12 s_website_form_field s_website_form_model_required"
-                                         data-type="text" data-name="Field">
-                                        <div class="row s_col_no_resize s_col_no_bgcolor">
-                                            <label class="col-form-label col-auto s_website_form_label"
-                                                   style="width: 200px" for="helpdesk2">
-                                                <span class="s_website_form_label_content">Departure Date and Time
-                                                </span>
-                                                <span class="s_website_form_mark">*</span>
-                                            </label>
-                                            <div class="col-sm col-xs-12">
-                                                <input id="helpdesk2" type="date"
-                                                       class="datetimepicker"
-                                                       name="departure_date" style="margin-top:10px;"/>
-                                            </div>
+    <t t-call="website.layout">
+        <div id="wrap" class="oe_structure oe_empty">
+            <div class="container">
+                <h2 class="text-muted">Book A Ride</h2>
+                <span class="hidden" data-for="helpdesk_ticket_form_new"/>
+                <div id="helpdesk_section">
+                    <section id="forms" class="s_website_form" data-vcss="001" data-snippet="s_website_form">
+                        <form action="/my_controller/route" method="post" enctype="multipart/form-data"
+                              class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
+                            <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
+                            <div class="s_website_form_rows row s_col_no_bgcolor">
+                                <div class="form-group col-12 s_website_form_field s_website_form_model_required"
+                                     data-type="text" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label"
+                                               style="width: 200px" for="helpdesk2">
+                                            <span class="s_website_form_label_content ">Departure Date and Time
+                                            </span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <input id="helpdesk2" type="date"
+                                                   class="form-control s_website_form_input"
+                                                   name="departure_date" style="margin-top:10px;"/>
                                         </div>
-                                    </div>
-                                    <br/>
-                                    <div class="form-group col-12 s_website_form_field s_website_form_model_required"
-                                         data-type="text" data-name="Field">
-                                        <div class="row s_col_no_resize s_col_no_bgcolor">
-                                            <label class="col-form-label col-auto s_website_form_label"
-                                                   style="width: 200px" for="helpdesk2">
-                                                <span class="s_website_form_label_content">Source City</span>
-                                                <span class="s_website_form_mark">*</span>
-                                            </label>
-                                            <div class="col-sm col-xs-12">
-                                                <input id="helpdesk2" type="text"
-                                                       name="source_city" style="margin-top:10px;"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                    <div class="form-group col-12 s_website_form_field s_website_form_model_required"
-                                         data-type="char" data-name="Field">
-                                        <div class="row s_col_no_resize s_col_no_bgcolor">
-                                            <label class="col-form-label col-auto s_website_form_label"
-                                                   style="width: 200px" for="helpdesk3">
-                                                <span class="s_website_form_label_content">Destination City</span>
-                                                <span class="s_website_form_mark">*</span>
-                                            </label>
-                                            <div class="col-sm col-xs-12">
-                                                <input id="helpdesk3" type="Char"
-                                                       name="destination_city" style="margin-top:20px;"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <br/>
-                                    <div class="form-group col-12 s_website_form_field s_website_form_model_required"
-                                         data-type="char" data-name="Field" style="margin-top:20px;">
-                                        <div class="row s_col_no_resize s_col_no_bgcolor">
-                                            <label class="col-form-label col-auto s_website_form_label"
-                                                   style="width: 200px" for="helpdesk3">
-                                                <span class="s_website_form_label_content">Number Of Seats</span>
-                                                <span class="s_website_form_mark">*</span>
-                                            </label>
-                                            <div class="col-sm col-xs-12">
-                                                <input id="helpdesk3" type="Char"
-                                                       name="capacity" style="margin-top:20px; margin-bottom:20px;"/>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-12 s_website_form_field s_website_form_custom"
-                                         data-type="binary" data-name="Field">
-                                        <div class="row s_col_no_resize s_col_no_bgcolor">
-                                            <label class="col-form-label col-auto s_website_form_label new_location"
-                                                   style="width: 200px" for="helpdesk9">
-                                            </label>
-                                            <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-                                            <meta name="description" content="PlacePicker With Search"/>
-                                            <script src="https://apis.mapmyindia.com/advancedmaps/v1/3a95b59d-a096-4c07-8e58-b8d712b0c3a9/map_load?v=1.5"></script>
-                                            <script src="https://apis.mapmyindia.com/advancedmaps/api/3a95b59d-a096-4c07-8e58-b8d712b0c3a9/map_sdk_plugins"></script>
-                                            <style>body { margin: 0 ; } #map {width: 100%;height: 50vh; margin: 0;
-                                                padding:0; }
-                                            </style>
-                                            <body>
-                                                <div id="map"></div>
-                                                <div id="direction"></div>
-                                                <script>
-                                                    /*Map Initialization*/
-                                                    var map = new MapmyIndia.Map('map', {center: [28.09, 78.3], zoom: 5,
-                                                    search: false});
-                                                    /*direction plugin initialization*/
-                                                    var direction_option={
-                                                    map:map,
-                                                    end:{label:'India Gate, Delhi',geoposition:"1T182A"},
-                                                    callback:function(data){console.log(data);}
-                                                    }
-                                                    var direction_plugin=MapmyIndia.direction(direction_option);
-                                                    //direction_plugin.remove();
-                                                </script>
-                                            </body>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-12 s_website_form_submit" data-name="Submit Button">
-                                        <div style="width: 200px;" class="s_website_form_label"/>
-                                        <button type="submit" class="btn btn-primary" style="margin-top:20px;">
-                                            Submit
-                                        </button>
-                                        <span id="s_website_form_result"/>
                                     </div>
                                 </div>
-                            </form>
-                        </section>
-                    </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_model_required"
+                                     data-type="text" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label"
+                                               style="width: 200px" for="helpdesk2">
+                                            <span class="s_website_form_label_content">Source City</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <input id="helpdesk2" type="text" class="form-control s_website_form_input"
+                                                   name="source_city" style="margin-top:10px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_model_required"
+                                     data-type="char" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label"
+                                               style="width: 200px" for="helpdesk3">
+                                            <span class="s_website_form_label_content">Destination City</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <input id="helpdesk3" type="Char" class="form-control s_website_form_input"
+                                                   name="destination_city" style="margin-top:20px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br/>
+                                <div class="form-group col-12 s_website_form_field s_website_form_model_required"
+                                     data-type="char" data-name="Field" style="margin-top:20px;">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label"
+                                               style="width: 200px" for="helpdesk3">
+                                            <span class="s_website_form_label_content ">Number Of Seats</span>
+                                            <span class="s_website_form_mark">*</span>
+                                        </label>
+                                        <div class="col-sm col-xs-12">
+                                            <input id="helpdesk3" type="Char" class="form-control s_website_form_input"
+                                                   name="capacity" style="margin-top:20px; margin-bottom:20px;"/>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 s_website_form_field s_website_form_custom"
+                                     data-type="binary" data-name="Field">
+                                    <div class="row s_col_no_resize s_col_no_bgcolor">
+                                        <label class="col-form-label col-auto s_website_form_label new_location"
+                                               style="width: 200px" for="helpdesk9">
+                                        </label>
+                                        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+                                        <meta name="description" content="PlacePicker With Search"/>
+                                          <script src="https://apis.mapmyindia.com/advancedmaps/v1/54dd37bc-0b9d-4079-ae1b-884da122e1bc/map_load?v=1.5"></script>
+                                        <script src="https://apis.mapmyindia.com/advancedmaps/api/54dd37bc-0b9d-4079-ae1b-884da122e1bc/map_sdk_plugins"></script>
+                                        <style>body { margin: 0 ; } #map {width: 100%;height: 50vh; margin: 0;
+                                            padding:0; }
+                                        </style>
+                                        <body>
+                                            <div id="map"></div>
+                                            <div id="direction"></div>
+                                            <script>
+                                                /*Map Initialization*/
+                                                var map = new MapmyIndia.Map('map', {center: [28.09, 78.3], zoom: 5,
+                                                search: false});
+                                                /*direction plugin initialization*/
+                                                var direction_option={
+                                                map:map,
+                                                end:{label:'India Gate, Delhi',geoposition:"1T182A"},
+                                                callback:function(data){console.log(data);}
+                                                }
+                                                var direction_plugin=MapmyIndia.direction(direction_option);
+                                                //direction_plugin.remove();
+                                            </script>
+                                        </body>
+                                    </div>
+                                </div>
+                                <div class="form-group col-12 s_website_form_submit" data-name="Submit Button">
+                                    <div style="width: 200px;" class="s_website_form_label"/>
+                                    <button type="submit" class="btn btn-primary" style="margin-top:20px;">
+                                        Submit
+                                    </button>
+                                    <span id="s_website_form_result"/>
+                                </div>
+                            </div>
+                        </form>
+                    </section>
                 </div>
             </div>
-        </t>
-    </template>
+        </div>
+    </t>
+</template>
+
     <record id="enquiry_thanks" model="website.page">
         <field name="name">Thanks</field>
         <field name="type">qweb</field>
