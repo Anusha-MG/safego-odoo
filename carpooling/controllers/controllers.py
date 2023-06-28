@@ -43,6 +43,8 @@ class CarPooling(http.Controller):
                 # 'is_round_trip': 'Yes' if rides.is_round_trip else 'No',
                 # 'return_date': rides.return_date,
                 'ride_amount': rides.ride_amount,
+                'car_name': rides.car_name,
+                'car_plate_number': rides.car_plate_number,
             })
 
         values.update({

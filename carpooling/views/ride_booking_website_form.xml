@@ -25,6 +25,8 @@
                     <th class="text-center">Source</th>
                     <th class="text-center">Destination</th>
                     <th class="text-center">Ride Amount</th>
+                    <th class="text-center">Vehicle Name</th>
+                    <th class="text-center">Vehicle Number</th>
                 </tr>
                 <tr t-foreach="rides" t-as="rides_dict">
                     <td>

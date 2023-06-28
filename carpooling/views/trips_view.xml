@@ -79,7 +79,7 @@
                                     <group>
                                         <field name="car_name" readonly='1'/>
                                         <field name="Car_model" readonly='1'/>
-                                        <field name="car_type" readonly='1'/>
+                                        <field name="car_type"/>
                                         <field name="car_plate_number" readonly='1'/>
                                         <field name="car_color"  widget='color' readonly='1'/>
                                     </group>
