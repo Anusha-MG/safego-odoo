@@ -6,6 +6,7 @@ class CarPooling(models.Model):
     _name = "car.pooling"
     _description = "Trips"
     _order = "id desc"
+
     driver = fields.Many2one('res.users', required=True, readonly=True, string='Driver (Car owner)', index=True, default=lambda self: self.env.user)
     source_city = fields.Char(string="Source Location", required=True)
     source_address = fields.Char()
@@ -24,7 +25,6 @@ class CarPooling(models.Model):
     filled_seat = fields.Integer(string="Number of filled seats", readonly=True)
     available_seat = fields.Integer(compute="_compute_available_seat", store=True, string="Available seats")
     ride_amount = fields.Float(string="Ride Price")
-
 
     @api.depends("capacity", "filled_seat")
     def _compute_available_seat(self):
@@ -246,7 +246,7 @@ class CarPoolingPassenger(models.Model):
          'You can only accept a booked trip for a passenger twice!'),
         ('refuse_count_check', 'CHECK(refuse_count <= 2)',
          "You can only refuse a booked trip for a passenger twice!"),
-         ("single_booking_check", 'unique(trip_id, passenger)', 'A passenger can only book a trip once!')
+         # ("single_booking_check", 'unique(trip_id, passenger)', 'A passenger can only book a trip once!')
         ]
 
     def action_accept(self):
