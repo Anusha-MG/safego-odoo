@@ -7,9 +7,9 @@ class CarPooling(models.Model):
     _description = "Trips"
     _order = "id desc"
     driver = fields.Many2one('res.users', required=True, readonly=True, string='Driver (Car owner)', index=True, default=lambda self: self.env.user)
-    source_city = fields.Char(required=True)
+    source_city = fields.Char(string="Source Location", required=True)
     source_address = fields.Char()
-    destination_city = fields.Char(required=True)
+    destination_city = fields.Char(string="Destination Location",required=True)
     destination_address = fields.Char()
     departure_date = fields.Datetime(string="Departure Date and Time", required=True)
     comments = fields.Text(help="The comments for the trips", string="Driver's Comments")

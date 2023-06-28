@@ -40,33 +40,52 @@ class CarPooling(http.Controller):
                 'departure_date': rides.departure_date,
                 'source_city': rides.source_city,
                 'destination_city': rides.destination_city,
-                'is_round_trip': 'Yes' if rides.is_round_trip else 'No',
-                'return_date': rides.return_date
+                # 'is_round_trip': 'Yes' if rides.is_round_trip else 'No',
+                # 'return_date': rides.return_date,
+                'ride_amount': rides.ride_amount,
             })
 
         values.update({
             'rides': rides_list
         })
-
+        print(values)
         return http.request.render('carpooling.available_rides', values)
 
     @http.route('/my_controller/route', type='http', auth="public", website=True)
     def ride_booking(self, **post):
         user = request.env.user
-        print(user.id)
-        source_city = post.get('source_city')
-        destination_city = post.get('destination_city')
-        departure_date = post.get('departure_date')
-        capacity = post.get('capacity')
-        # 'driver': user,
-        result = request.env['car.pooling'].sudo().create(
-            {'driver': user.id, 'source_city': source_city, 'destination_city': destination_city,
-             'departure_date': departure_date, 'capacity': capacity})
+        ride_details = []
+        print(post.get('departure_date'))
+        aaa = post.get('departure_date')
+        datetime_string = aaa
+        date, time = datetime_string.split('T')
+        bbb = date+" " +time
+        print(bbb)
+
+        print('Date:', date)
+        print('Time:', time)
+
+        ride_details.append({
+            'driver': user.id,
+            'source_city':  post.get('source_city'),
+            'destination_city': post.get('destination_city'),
+            'departure_date': bbb,
+            'capacity': post.get('capacity'),
+            'ride_amount': post.get('ride_amount')
+        })
+
+        result = request.env['car.pooling'].create(ride_details)
+        user.car_name = post.get('car_name')
+        user.car_plate_number = post.get('car_plate_number')
+
+        print(result)
         return request.render('carpooling.enquiry_thanks')
 
     @http.route('/book-ride', type='http', auth="public", website=True)
     def book_a_ride(self):
-        rides_obj = request.env['car.pooling'].sudo().search([('status', 'in', ('available', 'full'))])
+        rides_obj = request.env['car.pooling'].search([('status', 'in', ('available', 'full'))])
+        print("===================================================================================")
         for rides in rides_obj:
-            result = request.env['car.pooling.passenger'].sudo().create({'trip_id': rides.id})
-        return http.request.render('carpooling.enquiry_thanks')
+            result = request.env['car.pooling.passenger'].create({'trip_id': rides.id})
+            print(result)
+        return http.request.render('carpooling.payment_success')
