@@ -37,7 +37,7 @@
                                 <field name="trip_driver"/>
                                 <field name="trip_date"/>
                                 <field name="status"/>
-                                <field name="is_round_trip" />
+                                <field name="is_round_trip"  />
                             </tree>
                         </field>
                     </page>
