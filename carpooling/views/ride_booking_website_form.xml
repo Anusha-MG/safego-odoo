@@ -70,7 +70,7 @@
                 <div class="container">
                     <h2 class="text-muted">Book A Ride</h2>
                     <span class="hidden" data-for="helpdesk_ticket_form_new"/>
-                    <div id="helpdesk_section" backgroundcolor="#ffffff">
+                    <div id="helpdesk_section" style='background-color: #FFFFFF;'>
                         <section id="forms" class="s_website_form" data-vcss="001" data-snippet="s_website_form">
                             <form action="/my_controller/route" method="post" enctype="multipart/form-data"
                                   class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
