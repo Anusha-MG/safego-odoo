@@ -18,7 +18,7 @@
                         <group>
                              <field name="car_name"/>
                              <field name="Car_model"/>
-                             <field name="car_type"/>
+                             <field name="car_type" invisible="1"/>
                              <field name="car_plate_number"/>
                              <field name="car_color"  widget='color' />
                         </group>

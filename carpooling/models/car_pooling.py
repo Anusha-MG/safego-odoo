@@ -23,6 +23,9 @@ class CarPooling(models.Model):
     capacity = fields.Integer(string="Number of seats", required=True)
     filled_seat = fields.Integer(string="Number of filled seats", readonly=True)
     available_seat = fields.Integer(compute="_compute_available_seat", store=True, string="Available seats")
+    ride_amount = fields.Float(string="Ride Price")
+
+
     @api.depends("capacity", "filled_seat")
     def _compute_available_seat(self):
         for record in self:
