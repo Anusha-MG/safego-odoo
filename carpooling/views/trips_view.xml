@@ -19,14 +19,16 @@
                 <field name="driver"/>
                 <field name="available_seat"/>
                 <field name="source_city"/>
-                <field name="source_address"/>
+                <field name="source_address" invisible="1"/>
                 <field name="departure_date" />
                 <field name="destination_city"/>
-                <field name="destination_address"/>
+                <field name="destination_address" invisible="1"/>
                 <field name="status"/>
                 <field name="tag" optional="1"/>
                 <field name="is_round_trip"/>
-                <field name="return_date" />           
+                <field name="return_date" />
+                <field name="ride_amount" />
+
             </tree>
         </field>
     </record>
@@ -64,10 +66,11 @@
                                 <group >
                                     <field name="departure_date"  attrs="{'readonly': ['|',('status', 'in', ('departed','unavailable','canceled')),('is_current_user_driver','=',False)]}"/>
                                     <field name="source_city"  attrs="{'readonly': ['|',('status', 'in', ('departed','unavailable','canceled')),('is_current_user_driver','=',False)]}"/>
-                                    <field name="source_address" attrs="{'readonly': ['|',('status', 'in', ('departed','unavailable','canceled')),('is_current_user_driver','=',False)]}"/>
+                                    <field name="source_address" invisible="1" attrs="{'readonly': ['|',('status', 'in', ('departed','unavailable','canceled')),('is_current_user_driver','=',False)]}"/>
                                     <field name="destination_city" attrs="{'readonly': ['|',('status', 'in', ('departed','unavailable','canceled')),('is_current_user_driver','=',False)]}"/>
-                                    <field name="destination_address"  attrs="{'readonly': ['|',('status', 'in', ('departed','unavailable','canceled')),('is_current_user_driver','=',False)]}"/>
+                                    <field name="destination_address" invisible="1" attrs="{'readonly': ['|',('status', 'in', ('departed','unavailable','canceled')),('is_current_user_driver','=',False)]}"/>
                                     <field name="return_date"  attrs="{'invisible': [('is_round_trip', '=', False)],'readonly': ['|',('status', 'in', ('departed','unavailable','canceled')),('is_current_user_driver','=',False)]}"/>           
+                                    <field name="ride_amount"/>
                                 </group>
            
                             </page>
