@@ -25,8 +25,8 @@
                 <field name="destination_address" invisible="1"/>
                 <field name="status"/>
                 <field name="tag" optional="1"/>
-                <field name="is_round_trip" invisible="1"/>
-                <field name="return_date" invisible="1" />
+                <field name="is_round_trip"/>
+                <field name="return_date" />
                 <field name="ride_amount" />
 
             </tree>
@@ -79,7 +79,7 @@
                                     <group>
                                         <field name="car_name" readonly='1'/>
                                         <field name="Car_model" readonly='1'/>
-                                        <field name="car_type"/>
+                                        <field name="car_type" readonly='1'/>
                                         <field name="car_plate_number" readonly='1'/>
                                         <field name="car_color"  widget='color' readonly='1'/>
                                     </group>
