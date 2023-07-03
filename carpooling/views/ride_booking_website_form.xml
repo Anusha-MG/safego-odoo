@@ -25,6 +25,8 @@
                     <th class="text-center">Source</th>
                     <th class="text-center">Destination</th>
                     <th class="text-center">Ride Amount</th>
+                    <th class="text-center">Vehicle Name</th>
+                    <th class="text-center">Vehicle Number</th>
                 </tr>
                 <tr t-foreach="rides" t-as="rides_dict">
                     <td>
@@ -68,7 +70,7 @@
                 <div class="container">
                     <h2 class="text-muted">Book A Ride</h2>
                     <span class="hidden" data-for="helpdesk_ticket_form_new"/>
-                    <div id="helpdesk_section">
+                    <div id="helpdesk_section" style='background-color: #FFFFFF;'>
                         <section id="forms" class="s_website_form" data-vcss="001" data-snippet="s_website_form">
                             <form action="/my_controller/route" method="post" enctype="multipart/form-data"
                                   class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
@@ -193,8 +195,8 @@
                                             </label>
                                             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                                             <meta name="description" content="PlacePicker With Search"/>
-                                            <script src="https://apis.mapmyindia.com/advancedmaps/v1/178e4816-673b-4901-b870-6d80298959f2/map_load?v=1.5"></script>
-                                            <script src="https://apis.mapmyindia.com/advancedmaps/api/178e4816-673b-4901-b870-6d80298959f2/map_sdk_plugins"></script>
+                                            <script src="https://apis.mapmyindia.com/advancedmaps/v1/913ed949-0db7-4ff2-bc54-fb86dccb4a95/map_load?v=1.5"></script>
+                                            <script src="https://apis.mapmyindia.com/advancedmaps/api/913ed949-0db7-4ff2-bc54-fb86dccb4a95/map_sdk_plugins"></script>
                                             <style>body { margin: 0 ; } #map {width: 100%;height: 50vh; margin: 0;
                                                 padding:0; }
                                             </style>
@@ -316,7 +318,7 @@
                             <h1>Thanks!</h1>
                             <div class="row">
                                 <div class="col-lg-8">
-                                    <div class="alert alert-success" role="status">Payment successful! Enjoy Your ride
+                                    <div class="alert alert-success" role="status">Ride Booked! Enjoy Your ride
                                     </div>
                                 </div>
                             </div>
