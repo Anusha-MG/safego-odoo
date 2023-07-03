@@ -12,8 +12,6 @@ DEFAULT = "default"
 
 class InheritedModel(models.Model):
     _inherit = "res.users"
-
-
     trip_ids = fields.One2many('car.pooling', "driver")
     my_book_trip_ids = fields.One2many('car.pooling.passenger', "passenger")
     phone_number = fields.Char()
