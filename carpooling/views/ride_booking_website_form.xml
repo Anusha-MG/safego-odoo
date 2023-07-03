@@ -73,7 +73,7 @@
                             <form action="/my_controller/route" method="post" enctype="multipart/form-data"
                                   class="o_mark_required" data-mark="*" data-model_name="" data-success-page="">
                                 <input type="hidden" name="csrf_token" t-att-value="request.csrf_token()"/>
-                                <div class="s_website_form_rows row s_col_no_bgcolor" style="background-color:#ffffff">
+                                <div class="s_website_form_rows row s_col_no_bgcolor">
                                     <div class="form-group col-12 s_website_form_field s_website_form_model_required"
                                          data-type="text" data-name="Field" style="margin-top:20px;">
                                         <div class="row s_col_no_resize s_col_no_bgcolor">
