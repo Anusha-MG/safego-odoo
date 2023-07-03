@@ -43,8 +43,8 @@
 
                 <header>
                         <button name="depart_action" type="object" string="Departed" attrs="{'invisible': ['|',('status', '=', 'canceled'),('is_current_user_driver','=',False)]}"/>
-                        <button name="cancel_action" type="object" string="Cancel" attrs="{'invisible': ['|',('status', '=', 'departed'),('is_current_user_driver','=',False)]}"/> 
-                        <button name="create_trip_details_hash" type="object" string="Create HASH" /> 
+                        <button name="cancel_action" type="object" string="Cancel" attrs="{'invisible': ['|',('status', '=', 'departed'),('is_current_user_driver','=',False)]}"/>  
+                        <button name="create_trip_details_hash" type="object" string="Create HASH" />
                         <field name="status" widget="statusbar"/>
                 </header>
                 <sheet>
