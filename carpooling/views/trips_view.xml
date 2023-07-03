@@ -44,6 +44,7 @@
                 <header>
                         <button name="depart_action" type="object" string="Departed" attrs="{'invisible': ['|',('status', '=', 'canceled'),('is_current_user_driver','=',False)]}"/>
                         <button name="cancel_action" type="object" string="Cancel" attrs="{'invisible': ['|',('status', '=', 'departed'),('is_current_user_driver','=',False)]}"/> 
+                        <button name="create_trip_details_hash" type="object" string="Create HASH" /> 
                         <field name="status" widget="statusbar"/>
                 </header>
                 <sheet>
@@ -106,6 +107,16 @@
                             <page string="Passenger Comments" attrs="{'invisible': ['&amp;','&amp;',('is_current_user_driver', '=', False),('current_user_book_status', '!=', 'Accepted'),('current_user_book_status', '=','Undecided')]}">
                                 <group >
                                         <field name="comments_ids"  attrs="{'readonly': ['|',('status', 'in', ('unavailable','canceled')),('is_current_user_driver','=',True)]}"/>
+                                </group>
+                            </page>
+                            <page string="Blockchain HASH Details">
+                                <group>
+                                    <group>
+                                        <field name = 'name_hash' readonly='1'/>
+                                    </group>
+                                    <group>
+                                        <field name = 'date_hash' readonly='1'/>
+                                    </group>
                                 </group>
                             </page>
                         </notebook>

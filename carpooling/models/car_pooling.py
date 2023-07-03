@@ -1,6 +1,6 @@
 from odoo import models, fields, api
 from odoo.exceptions import UserError, ValidationError
-
+import hashlib
 
 class CarPooling(models.Model):
     _name = "car.pooling"
@@ -24,6 +24,22 @@ class CarPooling(models.Model):
     filled_seat = fields.Integer(string="Number of filled seats", readonly=True)
     available_seat = fields.Integer(compute="_compute_available_seat", store=True, string="Available seats")
     ride_amount = fields.Float(string="Ride Price")
+
+    name_hash = fields.Char('Name HASH Value')
+    date_hash = fields.Char('Date HASH Value')
+
+    def create_trip_details_hash(self):
+        name_sha256_hash = hashlib.sha256()
+        date_sha256_hash = hashlib.sha256()
+
+        # Update the hash object with the data
+        # Convert data to bytes and update the hash
+        name_sha256_hash.update(self.name.encode('utf-8'))
+        date_sha256_hash.update(str(self.departure_date).encode('utf-8'))  
+
+        # Get the hexadecimal representation of the hash
+        self.name_hash = name_sha256_hash.hexdigest()
+        self.date_hash = date_sha256_hash.hexdigest()
 
 
     @api.depends("capacity", "filled_seat")
