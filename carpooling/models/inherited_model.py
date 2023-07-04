@@ -1,6 +1,8 @@
 #from odoo.exceptions import ValidationError
 #from odoo import api, fields, models
-from odoo import fields, models
+from odoo import fields, models, api
+import re
+from odoo.exceptions import AccessError, UserError, ValidationError
 
 DEFAULT_MESSAGE = "Default message"
 
@@ -29,6 +31,14 @@ class InheritedModel(models.Model):
     car_plate_number = fields.Char(string="Vehicle plate Number", required=True, default="Unkown")
     car_color = fields.Char(string="Vehicle Color", help="Choose your color")
     Car_image = fields.Binary("Upload Vehicle Image", attachment=True, store=True, help="This field holds the vehicle image ")
+
+    @api.onchange('car_plate_number')
+    def validate_vehicle_number(self):
+        pattern = r'^[A-Z]{2}\d{2}[A-Z]{1,2}\d{1,4}$'
+        if re.match(pattern, self.car_plate_number) == None:
+            raise UserError('Please enter valid Vehicle Number')
+        else:
+            pass
 
     # @api.constrains('phone_number')
     # def _check_phone_number(self):

@@ -180,9 +180,8 @@
                                                 <span class="s_website_form_mark">*</span>
                                             </label>
                                             <div class="col-sm col-xs-12">
-                                                <input id="helpdesk3" type="Char"
-                                                       class="form-control s_website_form_input"
-                                                       name="car_plate_number"/>
+                                                <input id="helpdesk3" type="Char" class="form-control s_website_form_input" name="car_plate_number" required="true" pattern="[A-Z]{2}\d{2}[A-Z]{1,2}\d{1,4}" title="Invalid vehicle number"
+                                                />
                                             </div>
                                         </div>
                                     </div>
