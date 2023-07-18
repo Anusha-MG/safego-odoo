@@ -180,9 +180,8 @@
                                                 <span class="s_website_form_mark">*</span>
                                             </label>
                                             <div class="col-sm col-xs-12">
-                                                <input id="helpdesk3" type="Char"
-                                                       class="form-control s_website_form_input"
-                                                       name="car_plate_number"/>
+                                                <input id="helpdesk3" type="Char" class="form-control s_website_form_input" name="car_plate_number" required="true" pattern="[A-Z]{2}\d{2}[A-Z]{1,2}\d{1,4}" title="Invalid vehicle number"
+                                                />
                                             </div>
                                         </div>
                                     </div>
@@ -195,8 +194,8 @@
                                             </label>
                                             <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
                                             <meta name="description" content="PlacePicker With Search"/>
-                                            <script src="https://apis.mapmyindia.com/advancedmaps/v1/178e4816-673b-4901-b870-6d80298959f2/map_load?v=1.5"></script>
-                                            <script src="https://apis.mapmyindia.com/advancedmaps/api/178e4816-673b-4901-b870-6d80298959f2/map_sdk_plugins"></script>
+                                            <script src="https://apis.mapmyindia.com/advancedmaps/v1/913ed949-0db7-4ff2-bc54-fb86dccb4a95/map_load?v=1.5"></script>
+                                            <script src="https://apis.mapmyindia.com/advancedmaps/api/913ed949-0db7-4ff2-bc54-fb86dccb4a95/map_sdk_plugins"></script>
                                             <style>body { margin: 0 ; } #map {width: 100%;height: 50vh; margin: 0;
                                                 padding:0; }
                                             </style>
